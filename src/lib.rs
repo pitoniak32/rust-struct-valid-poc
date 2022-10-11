@@ -41,12 +41,8 @@ fn validate_obj(mut cx: FunctionContext) -> JsResult<JsObject> {
     let test_yml: TestYaml = serde_yaml::from_reader(File::open(&"test.yml".to_string()).unwrap()).unwrap();
     let file_errors_yml = test_yml.validate();
 
-    println!("{:#?}", file_errors_yml);
-
     if !file_errors_yml.is_err() {
-        println!("No errors.");
-    //   println!("Writing result to file");
-    //   serde_json::to_writer(File::create(&"test-result.json".to_string()).unwrap(), &test_json).unwrap();
+        println!("No errors while validating.");
     } else {
         println!("An error occured when validating: {}", file_errors_yml.unwrap_err());
     }
